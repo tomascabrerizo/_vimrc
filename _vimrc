@@ -19,8 +19,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
 Plug 'mattn/emmet-vim'
+Plug 'preservim/nerdtree'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 call plug#end()
@@ -32,12 +33,13 @@ let g:syntastic_cpp_include_dirs = ['D:\Dev_Libs\include']
 
 "Tema utilizado
 colorscheme gruvbox 
+"Cursivas para tema one
 let g:one_allow_italics = 1
 set background=dark
 
 "Configuracion especifica de gui
 if has("gui_running")
-    set guifont=Consolas:h14:cANSI
+set guifont=Consolas:h14:cANSI
     set guioptions -=m
     set guioptions -=T
     set guioptions -=r
@@ -51,7 +53,8 @@ if has("win32")
     "Set Gvim to be Maximazed
     au GUIEnter * simalt ~x
     "Compile with window batfiles
-    nnoremap <C-c> :!compile.bat<Enter>
+    let &makeprg = 'compile.bat'
+    nnoremap <C-c> :make<Enter>
     nnoremap <C-x> :!run.bat<Enter>
 endif
 
@@ -61,6 +64,8 @@ inoremap <C-d> <C-o>$
 
 nnoremap <C-a> 0
 nnoremap <C-d> $
+
+nmap <F2> :NERDTreeToggle<CR>
 
 "Coc ir a definicion
 "nmap <silent> gd <Plug>(coc-definition)
@@ -73,3 +78,16 @@ let g:lightline = {
       \             [ 'readonly', 'filename', 'modified', 'absolutepath' ] ]
       \ },
       \ }
+
+" Automatically open, but do not go to (if there are errors) the quickfix /
+" location list window, or close it when is has become empty.
+"
+" Note: Must allow nesting of autocmds to enable any customizations for quickfix
+" buffers.
+" Note: Normally, :cwindow jumps to the quickfix window if the command opens it
+" (but not if it's already open). However, as part of the autocmd, this doesn't
+" seem to happen.
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
+
+
