@@ -58,9 +58,10 @@ if has("win32")
     "Set Gvim to be Maximazed
     au GUIEnter * simalt ~x
     "Compile with window batfiles
-    let &makeprg = 'mingw32-make'
+    "let &makeprg = 'mingw32-make'
+    set makeprg=mingw32-make
     nnoremap <C-c> :make<Enter>
-    nnoremap <C-x> :!run.bat<Enter>
+    nnoremap <C-x> :make run<Enter>
 endif
 
 nmap <F2> :NERDTreeToggle<CR>
