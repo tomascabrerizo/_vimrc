@@ -13,7 +13,6 @@ set noswapfile
 set nobackup
 set noundofile
 set incsearch
-"set cursorline
 
 "Pluging instalados
 call plug#begin('~/.vim/plugged')
@@ -29,22 +28,11 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'ctrlpvim/ctrlp.vim'
 "Plug 'itchyny/lightline.vim'
 call plug#end()
-"sirve para poder ir a errores con syntastic
-"let g:syntastic_always_populate_loc_list = 1
-"Lugar donde guardo mis librerias de C/C++
-"let g:syntastic_cpp_include_dirs = ['D:\Dev_Libs\include']
-
-
-"Tema utilizado
-colorscheme tomi 
-"Cursivas para tema one
-let g:one_allow_italics = 1
-set background=dark
 
 "Configuracion especifica de gui
 if has("gui_running")
-"set guifont=Consolas:h14:cANSI
-set guifont=liberation_mono:h11:cANSI
+"set guifont=Consolas:h12:cANSI
+set guifont=liberation_mono:h12:cANSI
     set guioptions -=m
     set guioptions -=T
     set guioptions -=r
@@ -68,22 +56,43 @@ nmap <F2> :NERDTreeToggle<CR>
 
 nmap <M-n> :cn<CR>
 nmap <M-S-n> :cp<CR>
-"Configuracion para lightline (muestra el path del archivo)
-"let g:lightline = {
-"      \ 'colorscheme': 'jellybeans',
-"      \ 'active': {
-"      \   'left': [ [ 'mode', 'paste' ],
-"      \             [ 'readonly', 'filename', 'modified', 'absolutepath' ] ]
-"      \ },
-"      \ }
 
-" Automatically open, but do not go to (if there are errors) the quickfix /
-" location list window, or close it when is has become empty.
-"
-" Note: Must allow nesting of autocmds to enable any customizations for quickfix
-" buffers.
-" Note: Normally, :cwindow jumps to the quickfix window if the command opens it
-" (but not if it's already open). However, as part of the autocmd, this doesn't
-" seem to happen.
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
+
+"Gvim colorsheme
+highlight Title         guifg=#ccfccb
+highlight Normal        guifg=#ccfccb       guibg=#1c1c1c
+highlight PreProc       guifg=#ccfccb
+highlight Number        guifg=#ccfccb
+
+highlight Comment       guifg=#888888
+
+highlight Constant      guifg=#00ff00       gui=none
+
+highlight Identifier    guifg=#f2a359       gui=none  
+highlight Statement     guifg=#f2a359       gui=none
+highlight Type          guifg=#f2a359       gui=none
+highlight Special       guifg=#f2a359       gui=none
+highlight Function      guifg=#f2a359       gui=none
+highlight Operator      guifg=#f2a359       gui=none
+highlight Structure     guifg=#f2a359       gui=none
+highlight Directory     guifg=#f2a359
+
+highlight CursorLine    guibg=#222288 
+
+highlight MatchParen    guifg=#ffffff       guibg=#4c4c4c
+
+highlight Cursor        guibg=#00ff00
+highlight CursorLineNR  guifg=#00ff00 
+
+highlight Error                             guibg=#ff0000
+highlight Todo          guifg=#ff0000       guibg=#1c1c1c       gui=bold
+
+highlight Search        guibg=#c0c000
+highlight Visual        guibg=#636363                           gui=bold
+highlight Cursor        gui=bold
+highlight StatusLine    guifg=#ffffff       guibg=#222288       gui=none 
+highlight StatusLineNC  guifg=#ffffff       guibg=#444444       gui=none 
+highlight VertSplit     guifg=#444444       guibg=#444444       gui=none
+highlight LineNr        guifg=#888888
